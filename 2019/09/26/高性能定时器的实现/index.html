@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Zh1an|BLOG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="高性能定时器的实现基于Libevent最小根堆定时器的C++定时器实现 针对于博文中的方法做出一部分改进，以使其可以自主运行（仅支持windows）。 Timer类的头文件： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#pragma once#define R">
+  <meta name="description" content="高性能定时器的实现基于Libevent最小根堆定时器的C++定时器实现 针对于博文中的方法做出一部分改进，以使其可以自主运行（仅支持windows）。">
 <meta name="keywords" content="C&#x2F;C++ 程序员 嵌入式 QT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zh1an|BLOG">
 <meta property="og:url" content="http://yoursite.com/2019/09/26/高性能定时器的实现/index.html">
 <meta property="og:site_name" content="Zh1an|BLOG">
-<meta property="og:description" content="高性能定时器的实现基于Libevent最小根堆定时器的C++定时器实现 针对于博文中的方法做出一部分改进，以使其可以自主运行（仅支持windows）。 Timer类的头文件： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#pragma once#define R">
+<meta property="og:description" content="高性能定时器的实现基于Libevent最小根堆定时器的C++定时器实现 针对于博文中的方法做出一部分改进，以使其可以自主运行（仅支持windows）。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-18T01:51:06.558Z">
+<meta property="og:updated_time" content="2019-10-10T05:44:38.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zh1an|BLOG">
-<meta name="twitter:description" content="高性能定时器的实现基于Libevent最小根堆定时器的C++定时器实现 针对于博文中的方法做出一部分改进，以使其可以自主运行（仅支持windows）。 Timer类的头文件： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#pragma once#define R">
+<meta name="twitter:description" content="高性能定时器的实现基于Libevent最小根堆定时器的C++定时器实现 针对于博文中的方法做出一部分改进，以使其可以自主运行（仅支持windows）。">
   
     <link rel="alternative" href="/atom.xml" title="Zh1an|BLOG" type="application/atom+xml">
   
@@ -86,10 +86,6 @@
 				
 					<a class="github" target="_blank" href="https://github.com/zh1an" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/" title="weixin"><i class="icon-weixin"></i></a>
-		        
-					<a class="acfun" target="_blank" href="https://www.acfun.cn/u/1406685.aspx" title="acfun"><i class="icon-acfun"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -127,10 +123,6 @@
 					
 						<a class="github" target="_blank" href="https://github.com/zh1an" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/" title="weixin"><i class="icon-weixin"></i></a>
-			        
-						<a class="acfun" target="_blank" href="https://www.acfun.cn/u/1406685.aspx" title="acfun"><i class="icon-acfun"></i></a>
-			        
 				</div>
 			</nav>
 
@@ -162,6 +154,8 @@
       
         <h2 id="高性能定时器的实现"><a href="#高性能定时器的实现" class="headerlink" title="高性能定时器的实现"></a>高性能定时器的实现</h2><p><a href="https://blog.csdn.net/liubo060807/article/details/7871962" target="_blank" rel="noopener">基于Libevent最小根堆定时器的C++定时器实现</a></p>
 <p>针对于博文中的方法做出一部分改进，以使其可以自主运行（仅支持<code>windows</code>）。</p>
+<a id="more"></a>
+
 <p><code>Timer</code>类的头文件：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RELATIVE_TIMER 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ABSOLUTE_TIMER 2</span></span><br><span class="line"><span class="comment">//! 前置声明</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">event</span>;</span></span><br><span class="line"><span class="comment">//! 最小堆数据结构定义</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">min_heap</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">event</span>** <span class="title">p</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> n, a;</span><br><span class="line">&#125; <span class="keyword">min_heap_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//! 定时器类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Timer</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Timer();</span><br><span class="line">    <span class="keyword">virtual</span> ~Timer();</span><br><span class="line">    <span class="comment">/**************************************</span></span><br><span class="line"><span class="comment">    * input: interval: 每次执行的时间隔间, 单位是毫秒。</span></span><br><span class="line"><span class="comment">    *        fun arg : 回调函数以及参数。</span></span><br><span class="line"><span class="comment">    *        flag    : 绝对定时器还是相对定时器，如果是相对定时器</span></span><br><span class="line"><span class="comment">    *        exe_num : 只有在相对定时器才有效，表示执行的次数。最少为1次</span></span><br><span class="line"><span class="comment">    * return: 生成定时器的ID</span></span><br><span class="line"><span class="comment">    **************************************/</span></span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">timer_add</span><span class="params">(<span class="keyword">int</span> interval, <span class="keyword">void</span>(*fun)(<span class="keyword">void</span>*), <span class="keyword">void</span> *arg, <span class="keyword">int</span> flag = ABSOLUTE_TIMER,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> exe_num = <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="comment">/***************************************</span></span><br><span class="line"><span class="comment">    * description:</span></span><br><span class="line"><span class="comment">    * 去掉已经加入的定时器，比如产生定时器的母体已经消亡了，在消亡之间要将其删除。</span></span><br><span class="line"><span class="comment">    * 相对定时器在任务完成后会Timer会自己释放掉。</span></span><br><span class="line"><span class="comment">    ***************************************/</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">timer_remove</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> timer_id)</span></span>;</span><br><span class="line">    <span class="comment">/***************************************</span></span><br><span class="line"><span class="comment">    * description: Timer属于被动对象，没有自己的执行线程，属于被调用者。这样主要是为了避免产生线程同步。</span></span><br><span class="line"><span class="comment">    * 定时器的循环处理函数，由定时器的拥有者进行循环调用。它的最小时间间隔决定了定时器的精度。</span></span><br><span class="line"><span class="comment">    ***************************************/</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">timer_process</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//! 获取最小堆顶端的定时器还剩下多少时间超时,以便于线程休眠来降低对CPU的消耗</span></span><br><span class="line">    <span class="comment">//! 获取值是毫秒的绝对值</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get_top_eplased</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//! 获取最小堆顶端的定时器还剩下多少时间超时,以便于线程休眠来降低对CPU的消耗</span></span><br><span class="line">    <span class="comment">//! 获取值是struct timeval 结构的数据,方便与网络接口select()的调用</span></span><br><span class="line">    <span class="function">struct timeval <span class="title">get_top_eplased_timeval</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">min_heap</span> _<span class="title">min_heap</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> _timer_id;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -390,6 +384,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">优雅的程序</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Zh1an|BLOG">
 <meta property="og:description" content="事件的定义123456789101112131415161718192021struct event&amp;#123;    //! 用于管理定时器	unsigned int min_heap_idx;    //! 定时器的唯一ID 	unsigned int timer_id;    //! 定时间隔	struct timeval ev_interval;    //! 超时时间点	struct t">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-25T06:34:55.597Z">
+<meta property="og:updated_time" content="2019-10-10T05:43:22.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最小堆的学习与实现">
 <meta name="twitter:description" content="事件的定义123456789101112131415161718192021struct event&amp;#123;    //! 用于管理定时器	unsigned int min_heap_idx;    //! 定时器的唯一ID 	unsigned int timer_id;    //! 定时间隔	struct timeval ev_interval;    //! 超时时间点	struct t">
@@ -86,10 +86,6 @@
 				
 					<a class="github" target="_blank" href="https://github.com/zh1an" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/" title="weixin"><i class="icon-weixin"></i></a>
-		        
-					<a class="acfun" target="_blank" href="https://www.acfun.cn/u/1406685.aspx" title="acfun"><i class="icon-acfun"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -126,10 +122,6 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/zh1an" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="weixin" target="_blank" href="/" title="weixin"><i class="icon-weixin"></i></a>
-			        
-						<a class="acfun" target="_blank" href="https://www.acfun.cn/u/1406685.aspx" title="acfun"><i class="icon-acfun"></i></a>
 			        
 				</div>
 			</nav>
@@ -187,6 +179,8 @@
 <li><code>ev_arg</code>回调函数的形参</li>
 <li><code>ev_flags</code>是定时器类型，定时器类型有两种：绝对定时器和相对定时器</li>
 </ol>
+<a id="more"></a>
+
 <h1 id="最小堆数据结构定义"><a href="#最小堆数据结构定义" class="headerlink" title="最小堆数据结构定义"></a>最小堆数据结构定义</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">min_heap</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">//! 双重指针，用于记录该最小堆(数组)的首地址</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">event</span>** <span class="title">p</span>;</span></span><br><span class="line">    <span class="comment">//! a代表的是最小堆的数组大小；n代表的是最小堆的数组使用了多少个元素</span></span><br><span class="line">	<span class="keyword">unsigned</span> n, a;</span><br><span class="line">&#125; <span class="keyword">min_heap_t</span>;</span><br></pre></td></tr></table></figure>
 
 <p><a href>双重指针</a></p>
@@ -285,7 +279,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/26/rapidJson/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/26/libev入门使用之基础知识/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -427,6 +421,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">STL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">优雅的程序</a>
               </li>
              
               <li class="article-tag-list-item">
